@@ -7,7 +7,7 @@ class TransactionCard(ft.Container):
         self.bgcolor = "#04002B"
         self.width = self.expand
         self.height = 120
-        self.border_radius = 12
+        self.border_radius = 20
         self.padding = 15
         self.margin = ft.margin.only(bottom=10)
         self.border = ft.border.all(1, "#1B263B")
@@ -43,7 +43,7 @@ class TransactionCard(ft.Container):
                     controls=[
 
                         ft.Text(
-                            f"{prefix} ${transaction_obj.value:.2f}", 
+                            f"{prefix} ${transaction_obj.value:,.2f}", 
                             size=18, 
                             weight=ft.FontWeight.W_600, 
                             color=amount_color,

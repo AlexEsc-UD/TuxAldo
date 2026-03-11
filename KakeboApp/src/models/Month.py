@@ -1,11 +1,14 @@
 import datetime
+from .Week import Week
 
 class Month:
-    def __init__(self, month_title, date_start):
-        self.month_title = month_title    
+    def __init__(self, title, date_start):
+        self.title = title    
         self.date = datetime.datetime.strptime(date_start, '%Y-%m-%d')
         self.weeks = []
-        self.balance_month = 0
+        self.balance = 0
+        self.incomes = 0
+        self.expenses = 0
     
 
     def calculate_balance(self):
@@ -13,5 +16,12 @@ class Month:
         self.balance_month = 0
 
         for week in self.weeks:
-            
-            self.balance_month += week.week_balance
+
+            self.incomes += week.incomes
+            self.expenses += week.expenses
+            self.balance += week.balance
+
+    def add_week(self, week):
+
+        self.weeks.append(week)
+        self.calculate_balance()

@@ -1,8 +1,9 @@
 import flet as ft
-from models.Day import Day
+from models.Month import Month
 
-class DayCard(ft.Container):
-    def __init__(self, day_obj: Day):
+
+class MonthCard(ft.Container):
+    def __init__(self, month_obj: Month):
         super().__init__()
         self.bgcolor = "#04002B"
         self.width = self.expand
@@ -17,18 +18,18 @@ class DayCard(ft.Container):
             offset=ft.Offset(0, 4)
         )
 
-        prefix = "+" if day_obj.balance >= 0 else "-"
+        prefix = "+" if month_obj.balance >= 0 else "-"
 
         self.content = ft.Column(
             alignment=ft.MainAxisAlignment.SPACE_BETWEEN,
-            controls=[
+            controls=[ 
 
                 ft.Row(
-                    alignment=ft.MainAxisAlignment.SPACE_BETWEEN,
+                    alignment=ft.MainAxisAlignment.CENTER,
                     controls=[
 
-                        ft.Text(day_obj.title, size=16, weight=ft.FontWeight.BOLD, color=ft.Colors.WHITE),
-                        ft.Text(day_obj.date.strftime("%d/%m"), size=10, color=ft.Colors.GREY_400),
+                        ft.Text(month_obj.title, size=16, weight=ft.FontWeight.BOLD, color=ft.Colors.WHITE),
+                       
                     
                         
                     ]
@@ -40,7 +41,7 @@ class DayCard(ft.Container):
                         ft.Text(
                             spans=[
                                 ft.TextSpan("In: ", ft.TextStyle(weight=ft.FontWeight.BOLD,color=ft.Colors.WHITE)),
-                                ft.TextSpan(f"${day_obj.income:,.2f}", ft.TextStyle(weight=ft.FontWeight.BOLD,color=ft.Colors.GREEN_ACCENT_400))
+                                ft.TextSpan(f"${month_obj.incomes:,.2f}", ft.TextStyle(weight=ft.FontWeight.BOLD,color=ft.Colors.GREEN_ACCENT_400))
                             ],
                             size=14,
 
@@ -49,7 +50,7 @@ class DayCard(ft.Container):
                         ft.Text(
                             spans=[
                                 ft.TextSpan("Egr: ", ft.TextStyle(weight=ft.FontWeight.BOLD,color=ft.Colors.WHITE)),
-                                ft.TextSpan(f"${day_obj.expense:,.2f}", ft.TextStyle(weight=ft.FontWeight.BOLD,color=ft.Colors.RED_ACCENT_400))
+                                ft.TextSpan(f"${month_obj.expenses:,.2f}", ft.TextStyle(weight=ft.FontWeight.BOLD,color=ft.Colors.RED_ACCENT_400))
                             ],
                             size=14,
                             
@@ -63,16 +64,13 @@ class DayCard(ft.Container):
                         ft.Text(
                             spans=[
                                 ft.TextSpan(f"Bal: ", ft.TextStyle(weight=ft.FontWeight.BOLD,color=ft.Colors.WHITE)),
-                                ft.TextSpan(f"{prefix} ${abs(day_obj.balance):,.2f}", ft.TextStyle(weight=ft.FontWeight.BOLD,color="#ffd900"))
+                                ft.TextSpan(f"{prefix} ${abs(month_obj.balance):,.2f}", ft.TextStyle(weight=ft.FontWeight.BOLD,color="#ffd900"))
                             ],
                             size=14,
                             
                         ),
-
-                        
-                        
                     ]
-                )
-            ,
+                ),
+
             ]
         )

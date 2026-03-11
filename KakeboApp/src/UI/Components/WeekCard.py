@@ -8,7 +8,7 @@ class WeekCard(ft.Container):
         self.bgcolor = "#04002B"
         self.width = self.expand
         self.height = 120
-        self.border_radius = 12
+        self.border_radius = 20
         self.padding = 15
         self.margin = ft.margin.only(bottom=10)
         self.border = ft.border.all(1, "#1B263B")
@@ -40,8 +40,8 @@ class WeekCard(ft.Container):
                     controls=[
                         ft.Text(
                             spans=[
-                                ft.TextSpan("INGRESOS: ", ft.TextStyle(color=ft.Colors.WHITE)),
-                                ft.TextSpan(f"${week_obj.incomes:.2f}", ft.TextStyle(color=ft.Colors.GREEN_ACCENT_400))
+                                ft.TextSpan("In: ", ft.TextStyle(weight=ft.FontWeight.BOLD,color=ft.Colors.WHITE)),
+                                ft.TextSpan(f"${week_obj.incomes:,.2f}", ft.TextStyle(weight=ft.FontWeight.BOLD,color=ft.Colors.GREEN_ACCENT_400))
                             ],
                             size=14,
 
@@ -49,8 +49,8 @@ class WeekCard(ft.Container):
                         ),
                         ft.Text(
                             spans=[
-                                ft.TextSpan("GASTOS: ", ft.TextStyle(color=ft.Colors.WHITE)),
-                                ft.TextSpan(f"${week_obj.expenses:.2f}", ft.TextStyle(color=ft.Colors.RED_ACCENT_400))
+                                ft.TextSpan("Egr: ", ft.TextStyle(weight=ft.FontWeight.BOLD,color=ft.Colors.WHITE)),
+                                ft.TextSpan(f"${week_obj.expenses:,.2f}", ft.TextStyle(weight=ft.FontWeight.BOLD,color=ft.Colors.RED_ACCENT_400))
                             ],
                             size=14,
                             
@@ -63,8 +63,8 @@ class WeekCard(ft.Container):
                     controls=[
                         ft.Text(
                             spans=[
-                                ft.TextSpan(f"BALANCE: ", ft.TextStyle(color=ft.Colors.WHITE)),
-                                ft.TextSpan(f"{prefix} ${abs(week_obj.balance):.2f}", ft.TextStyle(color="#ffd900"))
+                                ft.TextSpan(f"Bal: ", ft.TextStyle(weight=ft.FontWeight.BOLD,color=ft.Colors.WHITE)),
+                                ft.TextSpan(f"{prefix} ${abs(week_obj.balance):,.2f}", ft.TextStyle(weight=ft.FontWeight.BOLD,color="#ffd900"))
                             ],
                             size=14,
                             
