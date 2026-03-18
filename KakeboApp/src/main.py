@@ -8,10 +8,10 @@ from models.Month import Month
 
 # Asegúrate de que las rutas de importación coincidan con tu estructura
 
-from UI.Components.Transaction_Card import TransactionCard
-from UI.Components.DayCard import DayCard
-from UI.Components.WeekCard import WeekCard
-from UI.Components.MounthCard import MonthCard
+from UI.Components.Cards.Transaction_Card import TransactionCard
+from UI.Components.Cards.DayCard import DayCard
+from UI.Components.Cards.WeekCard import WeekCard
+from UI.Components.Cards.MounthCard import MonthCard
 from UI.Components.ScrollableList import ScrollableCardList
 from UI.Components.UpperFrame import UpperFrame
 from UI.Components.down_frame import DownFrame
@@ -93,7 +93,6 @@ def main(page: ft.Page):
             controls=[
                 ft.Divider(height=20, color=ft.Colors.TRANSPARENT),
                 UpperFrame(day1),
-                ft.Divider(height=10, color=ft.Colors.TRANSPARENT),
                 ScrollableCardList(cards=ListCard),
                 DownFrame(),
 
