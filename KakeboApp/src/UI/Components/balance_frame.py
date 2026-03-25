@@ -1,0 +1,39 @@
+import flet as ft
+from models.day import Day
+from models.Week import Week
+from models.Month import Month
+
+
+
+class BalanceFrame(ft.Container):
+    def __init__(self, obj):
+        super().__init__()
+        self.bgcolor = "#04002B"
+        self.width = self.expand
+        self.height = 50
+        self.border_radius = 20
+        self.padding = ft.padding.symmetric(vertical=10, horizontal=15)
+        self.margin = ft.margin.symmetric(horizontal=5, vertical=0)
+        self.border = ft.border.all(1, "#1B263B")
+        self.shadow = ft.BoxShadow(
+            blur_radius=15,
+            color=ft.Colors.with_opacity(0.2, ft.Colors.BLACK),
+            offset=ft.Offset(0, 4)
+        )
+
+        prefix = "+" if obj.balance >= 0 else "-"
+
+        self.content = ft.Row(
+            alignment=ft.MainAxisAlignment.CENTER,
+            controls=[
+
+                ft.Text(
+                    spans=[
+                        ft.TextSpan(f"Bal: ", ft.TextStyle(weight=ft.FontWeight.BOLD,color=ft.Colors.WHITE)),
+                        ft.TextSpan(f"{prefix} ${abs(obj.balance):,.2f}", ft.TextStyle(weight=ft.FontWeight.BOLD,color="#ffd900"))
+                    ],
+                    size=14,
+                )   
+            ]
+        )
+

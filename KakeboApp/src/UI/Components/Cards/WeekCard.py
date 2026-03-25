@@ -10,8 +10,8 @@ class WeekCard(ft.Container):
         self.height = 120
         self.border_radius = 20
         self.padding = 15
-        self.margin = ft.margin.only(bottom=10)
-        self.border = ft.border.all(1, "#1B263B")
+        self.margin = ft.Margin.only(bottom=10)
+        self.border = ft.Border.all(1, "#1B263B")
         self.shadow = ft.BoxShadow(
             blur_radius=15, 
             color=ft.Colors.with_opacity(0.2, ft.Colors.BLACK), 
