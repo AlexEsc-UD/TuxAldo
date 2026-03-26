@@ -1,6 +1,6 @@
 import flet as ft
 from models.day import Day
-from models.Week import Week
+from models.week import Week
 from models.Month import Month
 
 
@@ -12,9 +12,9 @@ class UpperFrame(ft.Container):
         self.width = self.expand
         self.height = 50
         self.border_radius = 20
-        self.padding = ft.padding.symmetric(vertical=10, horizontal=15)
-        self.margin = ft.margin.symmetric(horizontal=5, vertical=0)
-        self.border = ft.border.all(1, "#1B263B")
+        self.padding = ft.Padding.symmetric(vertical=10, horizontal=15)
+        self.margin = ft.Margin.symmetric(horizontal=5, vertical=0)
+        self.border = ft.Border.all(1, "#1B263B")
         self.shadow = ft.BoxShadow(
             blur_radius=15,
             color=ft.Colors.with_opacity(0.2, ft.Colors.BLACK),
@@ -34,6 +34,6 @@ class UpperFrame(ft.Container):
         elif isinstance(obj, Week):
             return f"{obj.start_date.strftime('%d/%m')} - {obj.end_date.strftime('%d/%m')}"
         elif isinstance(obj, Month):
-            return obj.date.strftime("%B %Y")
+            return obj.date.strftime("%Y")
 
         return ""

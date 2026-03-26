@@ -1,5 +1,5 @@
 import flet as ft
-from models.Week import Week
+from models.week import Week
 
 class WeekCard(ft.Container):
     def __init__(self, week_obj: Week):

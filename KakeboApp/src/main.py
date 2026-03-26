@@ -3,7 +3,7 @@ import flet as ft
 from models import day
 from models.Transaction import Transaction
 from models.day import Day
-from models.Week import Week
+from models.week import Week
 from models.Month import Month
 
 
@@ -20,10 +20,13 @@ from UI.views.day_view import DayView
 
 
 def main(page: ft.Page):
+
+
     page.title = "Kakebo GO - Dashboard"
     page.theme_mode = ft.ThemeMode.DARK
     page.bgcolor = "#00021d"
     page.padding = 0
+
 
     # Título de la sección
 
@@ -88,7 +91,7 @@ def main(page: ft.Page):
         page.views.clear()
 
         if page.route == "/day":
-            page.views.append(DayView(page, day1))
+            page.views.append(DayView(page, mounth1))
             
         elif page.route == "/":
         

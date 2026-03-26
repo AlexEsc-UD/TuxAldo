@@ -25,13 +25,13 @@ class Day:
     #calculo del balance del dia 
     def calculate_balance(self):
 
-        self.income = 0
-        self.expense = 0
+        self.incomes = 0
+        self.expenses = 0
         self.balance = 0
 
         for transaction in self.transactions:
             if transaction.type == 'expense':
-                self.expense += transaction.value
+                self.expenses += transaction.value
             else:
-                self.income += transaction.value
-        self.balance = self.income - self.expense       
+                self.incomes += transaction.value
+        self.balance = self.incomes - self.expenses       

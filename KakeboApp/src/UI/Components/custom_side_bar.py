@@ -5,7 +5,6 @@ class CustomBottomBar(ft.NavigationBar):
         super().__init__(
             selected_index=0,
             bgcolor="#04002B",
-            
             border=ft.Border.all(1, "#1B263B"),
             shadow_color=ft.Colors.with_opacity(0.2, ft.Colors.BLACK),
             destinations=[

@@ -1,40 +1,44 @@
 import flet as ft
 
 
+from UI.Components.Cards.DayCard import DayCard
+from UI.Components.Cards.WeekCard import WeekCard
 from UI.Components.UpperFrame import UpperFrame
 from UI.Components.ScrollableList import ScrollableCardList
 from UI.Components.custom_side_bar import CustomBottomBar
-from UI.Components.down_frame import DownFrame
+
 
 from UI.Components.Cards.Transaction_Card import TransactionCard
 from UI.Components.balance_frame import BalanceFrame 
 
+from models.Month import Month
 from models.day import Day
+from models.week import Week
 
 
 class DayView(ft.View):
-    def __init__(self,  page: ft.Page, day: Day):
+    def __init__(self,  page: ft.Page, obj):
 
 
         
-        self.day = day
-        self.upper_frame = UpperFrame(day)
-        self.transaction_list = ScrollableCardList([TransactionCard(t) for t in day.transactions])
-        self.down_frame = DownFrame()   
-        self.balance_frame = BalanceFrame(day)
-        self.Custom_side_bar = CustomBottomBar()
+        self.obj = obj
+        self.upper_frame = UpperFrame(obj)
+        self.transaction_list = ScrollableCardList(self.list_card_type(obj))
+        self.balance_frame = BalanceFrame(obj)
+        self.bottom_bar = CustomBottomBar()
         
         
         super().__init__(
             route="/day",
             bgcolor="#00021d",
-            padding=0,
+            padding= ft.Padding.symmetric(horizontal=10, vertical=10),
+            navigation_bar=self.bottom_bar,
             controls=[ft.Column(
                 controls=[
                     self.upper_frame,
                     self.transaction_list,
                     self.balance_frame,
-                    self.Custom_side_bar,
+
                     
                 ],
                 expand=True
@@ -42,6 +46,16 @@ class DayView(ft.View):
                 )
             ]
         )
+
+    def list_card_type(self, obj):
+        if isinstance(obj, Day):
+            return [TransactionCard(t) for t in obj.transactions]
+        elif isinstance(obj, Week):
+            return [DayCard(d) for d in obj.days]
+        elif isinstance(obj, Month):
+            return [WeekCard(w) for w in obj.weeks]
+        else:
+            return []
                          
                          
                          

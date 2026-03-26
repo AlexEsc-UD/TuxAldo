@@ -1,5 +1,5 @@
 import datetime
-from .Week import Week
+from .week import Week
 
 class Month:
     def __init__(self, title, date_start):
@@ -13,7 +13,10 @@ class Month:
 
     def calculate_balance(self):
 
-        self.balance_month = 0
+        self.incomes = 0
+        self.expenses = 0
+        self.balance = 0
+
 
         for week in self.weeks:
 

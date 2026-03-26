@@ -1,6 +1,6 @@
 import flet as ft
 from models.day import Day
-from models.Week import Week
+from models.week import Week
 from models.Month import Month
 
 
@@ -36,4 +36,6 @@ class BalanceFrame(ft.Container):
                 )   
             ]
         )
+
+        
 
