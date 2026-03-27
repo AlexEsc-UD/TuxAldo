@@ -13,19 +13,18 @@ from UI.Components.Cards.Transaction_Card import TransactionCard
 from UI.Components.Cards.DayCard import DayCard
 from UI.Components.Cards.WeekCard import WeekCard
 from UI.Components.Cards.MounthCard import MonthCard
-from UI.Components.ScrollableList import ScrollableCardList
-from UI.Components.UpperFrame import UpperFrame
-from UI.Components.down_frame import DownFrame
-from UI.views.day_view import DayView
+from UI.views.period_view import PeriodView
+from UI.views.home_view import HomeView
 
 
-def main(page: ft.Page):
+async def main(page: ft.Page):
 
 
     page.title = "Kakebo GO - Dashboard"
     page.theme_mode = ft.ThemeMode.DARK
     page.bgcolor = "#00021d"
     page.padding = 0
+    
 
 
     # Título de la sección
@@ -87,28 +86,31 @@ def main(page: ft.Page):
 
     
 
-    def route_change(e):
+    async def route_change(e=None):
         page.views.clear()
 
-        if page.route == "/day":
-            page.views.append(DayView(page, day1))  # Aquí puedes pasar el día que quieras mostrar
+        if page.route == "/":
+            page.views.append(HomeView(page, day1, week1, mounth1)) 
         
-        elif page.route == "/":
+        elif page.route == "/Period":
         
-            page.go("/day") # Aquí puedes pasar el día que quieras mostrar
+            page.views.append(PeriodView(page, mounth1)) 
+            
+        else:
+            await page.push_route("/")  # Aquí puedes pasar el día que quieras mostrar
         page.update()
 
-    def view_pop(e):
+    async def view_pop(e):
         if len(page.views) > 1:
             page.views.pop()
             top_view = page.views[-1]
-            page.go(top_view.route)
-        page.update()
+            await page.push_route(top_view.route)
+            page.update()
 
     page.on_route_change = route_change
     page.on_view_pop = view_pop
-
-    page.go("/day")  # Navega a la vista del día al iniciar la aplicación
+    await route_change()
+    
 
 
 

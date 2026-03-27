@@ -23,7 +23,7 @@ class ScrollableCardList(ft.Container):
             controls=[
                 ft.Container(
                     content=self.scroll_area,
-                    padding=ft.padding.symmetric(horizontal=8),
+                    padding=ft.Padding.symmetric(horizontal=8),
                     expand=True,
                 )
             ],

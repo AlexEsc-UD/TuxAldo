@@ -16,7 +16,7 @@ from models.day import Day
 from models.week import Week
 
 
-class DayView(ft.View):
+class PeriodView(ft.View):
     def __init__(self,  page: ft.Page, obj):
 
 
@@ -29,9 +29,9 @@ class DayView(ft.View):
         
         
         super().__init__(
-            route="/day",
+            route="/period",
             bgcolor="#00021d",
-            padding= ft.Padding.symmetric(horizontal=10, vertical=10),
+            padding= ft.Padding.only(top=30,left=5,right=5, bottom=10),
             navigation_bar=self.bottom_bar,
             controls=[ft.Column(
                 controls=[
