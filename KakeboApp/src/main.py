@@ -89,15 +89,17 @@ async def main(page: ft.Page):
     async def route_change(e=None):
         page.views.clear()
 
-        if page.route == "/":
-            page.views.append(HomeView(page, day1, week1, mounth1)) 
+        if page.route == "/Period":
+                    
+            page.views.append(PeriodView(page, day2))  
         
-        elif page.route == "/Period":
-        
-            page.views.append(PeriodView(page, mounth1)) 
+        elif page.route == "/":
+
+            await page.push_route("/Period")
+
             
         else:
-            await page.push_route("/")  # Aquí puedes pasar el día que quieras mostrar
+            await page.push_route("/Period")  # Aquí puedes pasar el día que quieras mostrar
         page.update()
 
     async def view_pop(e):

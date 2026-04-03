@@ -29,7 +29,7 @@ class PeriodView(ft.View):
         
         
         super().__init__(
-            route="/period",
+            route="/Period",
             bgcolor="#00021d",
             padding= ft.Padding.only(top=30,left=5,right=5, bottom=10),
             navigation_bar=self.bottom_bar,
