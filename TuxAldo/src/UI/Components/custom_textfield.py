@@ -17,6 +17,18 @@ class CustomTextField(ft.TextField):
         self.color = ft.Colors.WHITE    
         self.height = 40
         self.border_radius = 10
-        
+
         # Aplicamos las propiedades a la instancia de Flet
         self.can_reveal_password = password
+
+class CustomTextFiNumber(CustomTextField):
+
+    def __init__(self, hiden_text="0", min_l=1, max_l=1):
+        super().__init__(        
+            hiden_text=hiden_text,
+            min_l=min_l,
+            max_l=max_l
+        )
+        self.input_filter = ft.NumbersOnlyInputFilter()
+        self.keyboard_type = ft.KeyboardType.NUMBER
+        self.text_align = ft.TextAlign.RIGHT

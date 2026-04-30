@@ -4,6 +4,7 @@ import flet as ft
 from UI.Components.custom_side_bar import CustomBottomBar
 from UI.Components.add_trasaction_components import DetailsComponent
 from UI.Components.add_trasaction_components import TitleComponent
+from UI.Components.add_trasaction_components import ValueComponent
 
 class AddTransaccionView(ft.View):
     def __init__(self, page: ft.Page):
@@ -12,6 +13,7 @@ class AddTransaccionView(ft.View):
         self._selected_type     = "INGRESO"
         self.details_component = DetailsComponent()
         self.title_component = TitleComponent()
+        self.value_comp = ValueComponent()
 
 
 
@@ -26,6 +28,7 @@ class AddTransaccionView(ft.View):
                     
                     self.title_component,
                     self.details_component,
+                    self.value_comp,
 
                 ],
                 expand=True
