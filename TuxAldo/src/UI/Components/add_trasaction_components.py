@@ -3,6 +3,7 @@ from datetime import datetime
 
 from UI.Components.custom_textfield import CustomTextField
 from UI.Components.custom_textfield import CustomTextFiNumber
+from UI.Components.type_selector import TypeSelector, DropdownCategory
 
 class TitleComponent(ft.Container):
 
@@ -92,7 +93,7 @@ class ValueComponent(ft.Container):
     def __init__(self):
         super().__init__()
 
-        self.title_textfield = CustomTextFiNumber(hiden_text=" $$ ")
+        self.title_textfield = CustomTextFiNumber(hiden_text="$$")
 
         self.bgcolor = "#04002B"
         self.width = self.expand
@@ -123,4 +124,54 @@ class ValueComponent(ft.Container):
             ]
 
         )
+
+
+class CategoryComponent(ft.Container):
+    """
+    Agrupa TypeSelector y DropdownCategory en un solo componente.
+    Recibe on_type_change y on_category_change desde la view.
+    """
+    def __init__(self, on_type_change=None, on_category_change=None):
+        super().__init__()
+
+        self._on_type_change = on_type_change
+        self._on_category_change = on_category_change
+
+        # Dropdown se crea primero porque TypeSelector necesita referenciarlo
+        self.dropdown = DropdownCategory(on_change=self._handle_category_change)
+
+        self.selector = TypeSelector(on_change=self._handle_type_change)
+
+        # Estilo igual al resto de componentes
+        self.bgcolor = "#04002B"
+        self.expand = True
+        self.border_radius = 20
+        self.padding = 15
+        self.margin = ft.Margin.only(bottom=10)
+        self.border = ft.Border.all(1, "#1B263B")
+        self.shadow = ft.BoxShadow(
+            blur_radius=15,
+            color=ft.Colors.with_opacity(0.2, ft.Colors.BLACK),
+            offset=ft.Offset(0, 4),
+        )
+
+        self.content = ft.Column(
+            spacing=10,
+            controls=[
+                ft.Text("Categoría", size=16, weight=ft.FontWeight.BOLD, color=ft.Colors.WHITE),
+                self.selector,
+                self.dropdown,
+            ],
+        )
+
+    def _handle_type_change(self, tipo: str):
+        """Actualiza el dropdown y notifica a la view."""
+        self.dropdown.update_categories(tipo)
+        if self._on_type_change:
+            self._on_type_change(tipo)
+
+    def _handle_category_change(self, categoria: str):
+        """Notifica a la view la categoría elegida."""
+        if self._on_category_change:
+            self._on_category_change(categoria)
     

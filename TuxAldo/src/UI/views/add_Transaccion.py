@@ -5,35 +5,52 @@ from UI.Components.custom_side_bar import CustomBottomBar
 from UI.Components.add_trasaction_components import DetailsComponent
 from UI.Components.add_trasaction_components import TitleComponent
 from UI.Components.add_trasaction_components import ValueComponent
+from UI.Components.add_trasaction_components import CategoryComponent
 
 class AddTransaccionView(ft.View):
     def __init__(self, page: ft.Page):
-
         self.bottom_bar = CustomBottomBar()
-        self._selected_type     = "INGRESO"
+
+        # Estado de la transacción
+        self._selected_type     = None
+        self._selected_category = None
+
+        # Componentes existentes
+        self.title_component   = TitleComponent()
         self.details_component = DetailsComponent()
-        self.title_component = TitleComponent()
-        self.value_comp = ValueComponent()
+        self.value_comp        = ValueComponent()
 
-
-
+        # Nuevo componente: recibe callbacks de la view
+        self.category_comp = CategoryComponent(
+            on_type_change=self._on_type_change,
+            on_category_change=self._on_category_change,
+        )
 
         super().__init__(
             route="/add_transaccion",
             bgcolor="#00021d",
             navigation_bar=self.bottom_bar,
             padding=ft.Padding.only(top=30, left=5, right=5, bottom=10),
-            controls=[ft.Column(
-                controls=[
-                    
-                    self.title_component,
-                    self.details_component,
-                    self.value_comp,
-
-                ],
-                expand=True
-                
+            controls=[
+                ft.Column(
+                    controls=[
+                        self.title_component,
+                        self.category_comp,    # ← entre título y detalles
+                        self.details_component,
+                        self.value_comp,
+                    ],
+                    expand=True,
+                    scroll=ft.ScrollMode.AUTO,  # por si el contenido no cabe
                 )
-                
-            ]
+            ],
         )
+
+    def _on_type_change(self, tipo: str):
+        """Se dispara cuando el usuario elige Expense o Income."""
+        self._selected_type = tipo
+        print(f"Tipo seleccionado: {tipo}")  # reemplaza con tu lógica
+
+    def _on_category_change(self, categoria: str):
+        """Se dispara cuando el usuario elige una categoría."""
+        self._selected_category = categoria
+        print(f"Categoría seleccionada: {categoria}")  # reemplaza con tu lógica

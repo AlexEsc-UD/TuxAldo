@@ -15,7 +15,7 @@ class CustomTextField(ft.TextField):
         self.border_color = "#1B263B"
         self.focused_border_color = "#1B263B"
         self.color = ft.Colors.WHITE    
-        self.height = 40
+        self.height = 80
         self.border_radius = 10
 
         # Aplicamos las propiedades a la instancia de Flet
@@ -31,4 +31,4 @@ class CustomTextFiNumber(CustomTextField):
         )
         self.input_filter = ft.NumbersOnlyInputFilter()
         self.keyboard_type = ft.KeyboardType.NUMBER
-        self.text_align = ft.TextAlign.RIGHT
+        self.text_align = ft.TextAlign.LEFT
